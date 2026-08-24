@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marek Volkov — CV</title>
+  <meta name="description" content="Curriculum vitae of Marek Volkov — project coordination, international operations, Otwock, Poland." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1c2430;
+      --ink-2: #2a3444;
+      --paper: #f4f1ea;
+      --paper-2: #ebe6dc;
+      --slate: #3d5a73;
+      --muted: #6f6a60;
+      --hairline: #d8d2c6;
+      --sidebar-fg: #f4f1ea;
+      --sidebar-muted: #b7c0cc;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+    body {
+      margin: 0;
+      font-family: Figtree, "Segoe UI", system-ui, sans-serif;
+      background: var(--ink);
+      color: var(--paper);
+    }
+    button { font: inherit; cursor: pointer; }
+    h1, h2, h3 { text-wrap: balance; font-family: Newsreader, "Times New Roman", serif; font-weight: 500; }
+    .bar {
+      position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid var(--ink-2);
+      background: rgba(28,36,48,.95);
+      backdrop-filter: blur(8px);
+    }
+    .bar-inner {
+      max-width: 64rem; margin: 0 auto;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: .75rem; padding: .75rem 1rem;
+    }
+    .bar-name { margin: 0; font-family: Newsreader, serif; font-size: 1rem; color: var(--paper); }
+    .bar-actions { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+    .langs { display: flex; border: 1px solid var(--ink-2); background: var(--ink-2); border-radius: .5rem; padding: .25rem; }
+    .langs button {
+      min-width: 2.75rem; height: 2.75rem; border: 0; border-radius: .375rem;
+      background: transparent; color: var(--sidebar-muted); font-weight: 500;
+    }
+    .langs button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      height: 2.75rem; padding: 0 .75rem; border-radius: .5rem;
+      border: 1px solid var(--hairline); background: var(--paper); color: var(--ink);
+      font-size: .875rem; font-weight: 500;
+    }
+    .wrap { padding: 1.5rem .75rem 2.5rem; }
+    .sheet {
+      max-width: 64rem; margin: 0 auto; overflow: hidden;
+      background: var(--paper); color: var(--ink);
+      border-radius: .75rem;
+      box-shadow: 0 24px 60px rgba(0,0,0,.35);
+    }
+    .grid { display: grid; }
+    @media (min-width: 768px) {
+      .grid { grid-template-columns: minmax(15rem, 18rem) 1fr; }
+      .aside { order: 1; }
+      .main { order: 2; }
+    }
+    .aside { order: 2; background: var(--ink); color: var(--sidebar-fg); padding: 2rem 1.5rem; }
+    .main { order: 1; padding: 2rem 1.25rem; }
+    @media (min-width: 640px) { .main { padding: 2.5rem 2rem; } }
+    @media (min-width: 768px) { .main { padding: 2.5rem 2.5rem; } }
+    .mono {
+      width: 4rem; height: 4rem; display: none; align-items: center; justify-content: center;
+      border: 1px solid var(--ink-2); border-radius: .5rem;
+      font-family: Newsreader, serif; font-size: 1.5rem; margin-bottom: 2rem;
+    }
+    @media (min-width: 768px) { .mono { display: flex; } }
+    .side-title {
+      margin: 0 0 .75rem; font-family: Figtree, sans-serif;
+      font-size: .7rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--sidebar-muted);
+    }
+    .aside section { margin-bottom: 2rem; }
+    .aside section:last-child { margin-bottom: 0; }
+    .aside ul { list-style: none; margin: 0; padding: 0; }
+    .aside a { color: inherit; }
+    .chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .chip {
+      border: 1px solid var(--ink-2); border-radius: .375rem;
+      padding: .25rem .65rem; font-size: .75rem;
+    }
+    .lang-row { border-bottom: 1px solid var(--ink-2); padding: .4rem 0; font-size: .875rem; }
+    .lang-row:last-child { border-bottom: 0; }
+    .kicker {
+      margin: 0 0 .5rem; font-size: .7rem; font-weight: 600;
+      letter-spacing: .22em; text-transform: uppercase; color: var(--slate);
+    }
+    .name { margin: 0; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; letter-spacing: -.02em; }
+    .headline { margin: .75rem 0 0; max-width: 36rem; color: var(--slate); line-height: 1.5; }
+    .loc { margin: .5rem 0 0; font-size: .875rem; color: var(--muted); }
+    .block { border-bottom: 1px solid var(--hairline); padding: 1.75rem 0; }
+    .block:last-of-type { border-bottom: 0; }
+    .sec { margin: 0 0 1rem; font-size: 1.15rem; }
+    .job { margin-bottom: 1.75rem; }
+    .job-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; }
+    .job h3 { margin: 0; font-size: 1.125rem; }
+    .job-dates { margin: 0; font-size: .75rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+    .job-co { margin: .2rem 0 0; font-size: .875rem; font-weight: 500; color: var(--slate); }
+    .job-loc { margin: .15rem 0 0; font-size: .75rem; color: var(--muted); }
+    .job ul { margin: .5rem 0 0; padding: 0; list-style: none; }
+    .job li { display: flex; gap: .65rem; margin: .35rem 0; font-size: .9rem; line-height: 1.55; }
+    .job li::before { content: ""; width: .25rem; height: .25rem; margin-top: .55rem; flex-shrink: 0; border-radius: 99px; background: var(--slate); }
+    .source { border-top: 1px solid var(--hairline); padding-top: 1.25rem; font-size: .75rem; color: var(--muted); line-height: 1.5; }
+    .share {
+      margin-top: 1rem; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem;
+      font-size: .8rem; color: var(--sidebar-muted);
+    }
+    .share code {
+      background: var(--ink-2); color: var(--paper); padding: .35rem .55rem;
+      border-radius: .375rem; font-size: .8rem;
+    }
+    @media print {
+      .bar, .share { display: none !important; }
+      body { background: #fff; }
+      .wrap { padding: 0; }
+      .sheet { box-shadow: none; border-radius: 0; }
+      @page { size: A4; margin: 10mm; }
+    }
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <div class="bar-inner">
+      <p class="bar-name">Marek Volkov</p>
+      <div class="bar-actions">
+        <div class="langs" role="group" aria-label="Language" id="langs"></div>
+        <button class="btn" type="button" onclick="window.print()">PDF</button>
+        <button class="btn" type="button" id="copyBtn">Copy URL</button>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <article class="sheet">
+      <div class="grid">
+        <aside class="aside" id="aside"></aside>
+        <div class="main" id="main"></div>
+      </div>
+    </article>
+  </main>
+  <script>
+    const PUBLIC_URL = "https://markiyanvol-git.github.io/cv";
+    const LINKEDIN = "https://www.linkedin.com/in/marek-volkov-595532102/";
+    const t = (en, ru, pl) => ({ en, ru, pl });
+    const ui = {
+      print: t("Print / PDF", "Печать / PDF", "Druk / PDF"),
+      copy: t("Copy URL", "Скопировать адрес", "Kopiuj adres"),
+      copied: t("Copied", "Скопировано", "Skopiowano"),
+      profile: t("Profile", "Профиль", "Profil"),
+      experience: t("Experience", "Опыт работы", "Doświadczenie"),
+      education: t("Education", "Образование", "Wykształcenie"),
+      languages: t("Languages", "Языки", "Języki"),
+      skills: t("Skills", "Навыки", "Umiejętności"),
+      certificates: t("Certificates", "Сертификаты", "Certyfikaty"),
+      publications: t("Publications", "Публикации", "Publikacje"),
+      courses: t("Courses", "Курсы", "Kursy"),
+      contact: t("Contact", "Контакты", "Kontakt"),
+      linkedin: t("LinkedIn profile", "Профиль LinkedIn", "Profil LinkedIn"),
+      source: t(
+        "Compiled from the public LinkedIn profile. Some role descriptions were not fully visible; duties follow the listed titles and public company information.",
+        "Составлено по открытому профилю LinkedIn. Часть описаний должностей была скрыта; обязанности восстановлены по названиям позиций и открытым данным о компаниях.",
+        "Opracowano na podstawie publicznego profilu LinkedIn. Część opisów stanowisk była niedostępna; obowiązki odtworzono na podstawie tytułów i publicznych informacji o firmach."
+      ),
+    };
+    const headline = t(
+      "Project coordination · International operations · Multilingual",
+      "Координация проектов · Внешнеэкономическая деятельность · Мультиязычность",
+      "Koordynacja projektów · Operacje międzynarodowe · Wielojęzyczność"
+    );
+    const location = t("Otwock, Mazowieckie, Poland", "Отвоцк, Мазовецкое воеводство, Польша", "Otwock, woj. mazowieckie, Polska");
+    const summary = t(
+      "Multilingual operations professional with a Master’s degree in Applied Linguistics (National Polytechnic University, 2013). Began in marketing with leading brands in feed additives and premixes, then spent nearly four years in customer and technical support while building sales and negotiation skills. Since moving to Poland has worked across project coordination, import–export, recruitment, print production and building supervision. Strong at developing mutually beneficial internal and external relationships. Currently with Cable Factory BITNER.",
+      "Многоязычный специалист по операциям с дипломом магистра прикладной лингвистики (Национальный политехнический университет, 2013). Начинал в маркетинге у ведущих производителей кормовых добавок и премиксов, затем почти четыре года работал в клиентской и технической поддержке, развивая навыки продаж и переговоров. После переезда в Польшу — координация проектов, внешнеэкономическая деятельность, рекрутинг, полиграфия и строительный надзор. Умеет выстраивать взаимовыгодные внутренние и внешние отношения. Сейчас работает в Cable Factory BITNER.",
+      "Wielojęzyczny specjalista operacyjny z tytułem magistra lingwistyki stosowanej (National Polytechnic University, 2013). Zaczynał w marketingu u wiodących marek dodatków paszowych i premiksów, następnie przez prawie cztery lata pracował w obsłudze klienta i wsparciu technicznym, rozwijając sprzedaż i negocjacje. Po przeprowadzce do Polski — koordynacja projektów, import–eksport, rekrutacja, poligrafia i nadzór budowlany. Skutecznie buduje wzajemnie korzystne relacje wewnętrzne i zewnętrzne. Obecnie w Cable Factory BITNER."
+    );
+    const jobs = [
+      { company: t("Cable Factory BITNER","Cable Factory BITNER","Cable Factory BITNER"), role: t("Current role","Текущая позиция","Obecne stanowisko"), dates: t("Present","н.в.","obecnie"), location: t("Poland","Польша","Polska"),
+        bullets: t(
+          ["Currently with Zakłady Kablowe BITNER — a Polish manufacturer of cables and wires (since 1996) supplying industry, construction, energy and infrastructure.","Public profile lists BITNER as the current headline employer; a specific job title was not published."],
+          ["Работает в Zakłady Kablowe BITNER — польском производителе кабелей и проводов (с 1996 года), поставляющем продукцию для промышленности, строительства, энергетики и инфраструктуры.","В открытом профиле BITNER указан как текущий работодатель; конкретная должность не опубликована."],
+          ["Obecnie w Zakładach Kablowych BITNER — polskim producencie kabli i przewodów (od 1996 r.), dostarczającym rozwiązania dla przemysłu, budownictwa, energetyki i infrastruktury.","Publiczny profil podaje BITNER jako obecnego pracodawcę; konkretny tytuł stanowiska nie został opublikowany."]
+        )},
+      { company: t("Krismar Sp. z o.o. Sp. K.","Krismar Sp. z o.o. Sp. K.","Krismar Sp. z o.o. Sp. K."), role: t("Project coordinator","Координатор проектов","Koordynator projektów"), dates: t("Oct 2021 —","окт 2021 —","paź 2021 —"), location: t("Poland","Польша","Polska"),
+        bullets: t(
+          ["Coordinated industrial projects at KRISMAR (steel structures, electrical and metal trades; legal employment of specialists on construction and industrial sites).","Aligned crews, schedules and site needs across multi-trade teams."],
+          ["Координировал промышленные проекты в KRISMAR (металлоконструкции, электромонтаж и слесарные специальности; легальное трудоустройство специалистов на стройках и промышленных объектах).","Согласовывал составы бригад, графики и потребности площадок в мультидисциплинарных командах."],
+          ["Koordynował projekty przemysłowe w KRISMAR (konstrukcje stalowe, elektryka i zawody metalowe; legalne zatrudnienie specjalistów na budowach i obiektach przemysłowych).","Uzgadniał składy ekip, harmonogramy i potrzeby placów w zespołach wielobranżowych."]
+        )},
+      { company: t("VIPoL","VIPoL","VIPoL"), role: t("Coordinator","Координатор","Koordynator"), dates: t("Mar 2021 — Dec 2021 · 10 mo","мар 2021 — дек 2021 · 10 мес.","mar 2021 — gru 2021 · 10 mies."), location: t("Warsaw, Mazowieckie, Poland","Варшава, Мазовецкое воеводство, Польша","Warszawa, woj. mazowieckie, Polska"),
+        bullets: t(
+          ["Coordinated day-to-day operations in Warsaw during a 10-month assignment.","Supported planning, communication and follow-through across stakeholders."],
+          ["Координировал текущие операции в Варшаве в течение 10 месяцев.","Поддерживал планирование, коммуникацию и контроль исполнения между сторонами."],
+          ["Koordynował bieżące operacje w Warszawie podczas 10-miesięcznego zlecenia.","Wspierał planowanie, komunikację i realizację ustaleń między stronami."]
+        )},
+      { company: t("MIR-KAR","MIR-KAR","MIR-KAR"), role: t("Import Export Manager","Менеджер по импорту и экспорту","Kierownik importu i eksportu"), dates: t("Aug 2020 — Dec 2021 · 1 yr 5 mo","авг 2020 — дек 2021 · 1 г. 5 мес.","sie 2020 — gru 2021 · 1 rok 5 mies."), location: t("Pajęczno, Łódzkie, Poland","Паенчно, Лодзинское воеводство, Польша","Pajęczno, woj. łódzkie, Polska"),
+        bullets: t(
+          ["Managed import–export for MIR-KAR, a meat processing and export company (est. 1998) with nationwide reach and required export permits.","Handled cross-border trade documentation, supplier/customer communication and shipment coordination."],
+          ["Вёл импорт и экспорт в MIR-KAR — мясоперерабатывающей и экспортной компании (с 1998 года) с работой по всей стране и необходимыми экспортными разрешениями.","Сопровождал внешнеторговые документы, коммуникацию с поставщиками и клиентами, координацию отгрузок."],
+          ["Odpowiadał za import–eksport w MIR-KAR, firmie mięsnej i eksportowej (od 1998 r.) z zasięgiem ogólnokrajowym i wymaganymi pozwoleniami eksportowymi.","Prowadził dokumentację handlu zagranicznego, kontakt z dostawcami i klientami oraz koordynację wysyłek."]
+        )},
+      { company: t("MD Labels Jasinski","MD Labels Jasinski","MD Labels Jasinski"), role: t("Printer, Designer","Печатник, дизайнер","Drukarz, projektant"), dates: t("Jan 2017 — Dec 2021 · 5 yrs","янв 2017 — дек 2021 · 5 лет","sty 2017 — gru 2021 · 5 lat"), location: t("Kalisz, Wielkopolskie, Poland","Калиш, Великопольское воеводство, Польша","Kalisz, woj. wielkopolskie, Polska"),
+        bullets: t(
+          ["Print and design work at a labels production company — stickers and printing on labels.","Prepared artwork and supported production of label runs for client orders."],
+          ["Печать и дизайн на производстве этикеток — наклейки и печать на лейблах.","Готовил макеты и сопровождал тиражи этикеток под заказы клиентов."],
+          ["Praca drukarska i projektowa w firmie produkującej etykiety — naklejki i nadruk na etykietach.","Przygotowywał projekty i wspierał realizację nakładów etykiet na zamówienia klientów."]
+        )},
+      { company: t("Janstyl","Janstyl","Janstyl"), role: t("Building Supervisor","Супервайзер строительства","Kierownik budowy"), dates: t("2017 — Dec 2021 · 4 yrs","2017 — дек 2021 · 4 года","2017 — gru 2021 · 4 lata"), location: t("Łódź, Łódzkie, Poland","Лодзь, Лодзинское воеводство, Польша","Łódź, woj. łódzkie, Polska"),
+        bullets: t(
+          ["Supervised building works in the Łódź area over a four-year span.","Oversaw site progress, quality of workmanship and coordination of on-site crews."],
+          ["Осуществлял надзор за строительными работами в районе Лодзи на протяжении четырёх лет.","Контролировал ход работ, качество исполнения и координацию бригад на площадке."],
+          ["Nadzorował roboty budowlane w rejonie Łodzi przez cztery lata.","Pilnował postępu prac, jakości wykonania i koordynacji ekip na placu budowy."]
+        )},
+      { company: t("UnitedThinkers LLC","UnitedThinkers LLC","UnitedThinkers LLC"), role: t("Relationship Manager","Менеджер по работе с клиентами","Relationship Manager"), dates: t("Aug 2016 — Dec 2021 · 5 yrs 5 mo","авг 2016 — дек 2021 · 5 лет 5 мес.","sie 2016 — gru 2021 · 5 lat 5 mies."), location: t("Lviv, Ukraine","Львов, Украина","Lwów, Ukraina"),
+        bullets: t(
+          ["Relationship management at United Thinkers, a payment-gateway and payment-processing software company.","Developed and maintained mutually beneficial client relationships; supported sales after an earlier marketing background."],
+          ["Вёл клиентские отношения в United Thinkers — компании платёжных шлюзов и ПО для процессинга платежей.","Развивал и поддерживал взаимовыгодные отношения с клиентами; опирался на опыт продаж и маркетинга."],
+          ["Zarządzał relacjami z klientami w United Thinkers — firmie bramek płatniczych i oprogramowania do przetwarzania płatności.","Budował i utrzymywał wzajemnie korzystne relacje; wspierał sprzedaż po wcześniejszym doświadczeniu marketingowym."]
+        )},
+      { company: t("Staff in","Staff in","Staff in"), role: t("Recruiter — Coordinator","Рекрутер — координатор","Rekruter — koordynator"), dates: t("Feb 2019 — Aug 2020 · 1 yr 7 mo","фев 2019 — авг 2020 · 1 г. 7 мес.","lut 2019 — sie 2020 · 1 rok 7 mies."), location: t("—","—","—"),
+        bullets: t(
+          ["Combined recruiting with coordination: sourcing, screening and matching candidates while keeping hiring workflows on track.","Worked with hiring managers and candidates across languages."],
+          ["Совмещал рекрутинг и координацию: поиск, отбор и подбор кандидатов, ведение процесса найма.","Работал с нанимающими менеджерами и кандидатами на нескольких языках."],
+          ["Łączył rekrutację z koordynacją: sourcing, selekcja i dopasowanie kandydatów oraz prowadzenie procesów rekrutacyjnych.","Współpracował z managerami rekrutującymi i kandydatami w kilku językach."]
+        )},
+      { company: t("Feed-additive & premix brands","Производители кормовых добавок и премиксов","Marki dodatków paszowych i premiksów"), role: t("Marketing manager","Маркетинг-менеджер","Kierownik marketingu"), dates: t("Early career","Начало карьеры","Początek kariery"), location: t("—","—","—"),
+        bullets: t(
+          ["First professional experience with leading brands in the production of feed additives and premixes, as marketing manager.","Built interpersonal, communication and negotiation skills used throughout later commercial roles."],
+          ["Первый профессиональный опыт — маркетинг-менеджер у ведущих брендов в производстве кормовых добавок и премиксов.","Сформировал навыки коммуникации и переговоров, которые затем использовал в коммерческих ролях."],
+          ["Pierwsze doświadczenie zawodowe — kierownik marketingu u wiodących marek dodatków paszowych i premiksów.","Wykształcił umiejętności interpersonalne, komunikacyjne i negocjacyjne wykorzystywane w późniejszych rolach handlowych."]
+        )},
+    ];
+    const education = {
+      degree: t("Master’s degree, Applied Linguistics","Магистр, прикладная лингвистика","Magister, lingwistyka stosowana"),
+      school: t("National Polytechnic University","Национальный политехнический университет","National Polytechnic University"),
+      dates: t("Graduated 2013","Окончание — 2013","Ukończone w 2013"),
+    };
+    const languages = [t("English","Английский","Angielski"), t("Ukrainian","Украинский","Ukraiński"), t("Russian","Русский","Rosyjski"), t("Polish","Польский","Polski")];
+    const skills = t(
+      ["Project coordination","Import / export operations","B2B relationship management","Sales & negotiation","Recruitment coordination","Print production & label design","Building supervision","Customer & technical support","Marketing","Copywriting & research writing","Multilingual communication"],
+      ["Координация проектов","Импорт / экспорт","B2B-отношения с клиентами","Продажи и переговоры","Рекрутинг и координация найма","Полиграфия и дизайн этикеток","Строительный надзор","Клиентская и техническая поддержка","Маркетинг","Копирайтинг и исследовательские тексты","Мультиязычная коммуникация"],
+      ["Koordynacja projektów","Operacje import / eksport","Relacje B2B","Sprzedaż i negocjacje","Koordynacja rekrutacji","Poligrafia i projekt etykiet","Nadzór budowlany","Obsługa klienta i wsparcie techniczne","Marketing","Copywriting i teksty badawcze","Komunikacja wielojęzyczna"]
+    );
+    const certificate = {
+      name: t("Management training certificate","Сертификат управленческой подготовки","Certyfikat szkolenia menedżerskiego"),
+      issued: t("Issued Jun 2015","Выдан: июн 2015","Wydany: cze 2015"),
+    };
+    const publications = [
+      { title: t("Freelance writing","Фриланс-тексты","Teksty freelance"), meta: t("9 Jun 2015 · Copywriting, rewriting, research writing","9 июня 2015 · копирайтинг, рерайтинг, research writing","9 czerwca 2015 · copywriting, rewriting, research writing"), detail: t("Also listed topics: RAID storage, cloud computing, remote storage, backup.","Также указаны темы: RAID, облачные вычисления, удалённое хранение, резервное копирование.","Dodatkowo tematy: RAID, chmura, zdalne przechowywanie, backup.") },
+      { title: t("Kantian Deontological Ethics","Kantian Deontological Ethics","Kantian Deontological Ethics"), meta: t("Research paper in philosophy","Исследовательская работа по философии","Praca badawcza z filozofii"), detail: t("Quantum Computer Essays","Quantum Computer Essays","Quantum Computer Essays") },
+      { title: t("The political, administrative and economic impacts of European colonization of Africa","Политические, административные и экономические последствия европейской колонизации Африки","Polityczne, administracyjne i gospodarcze skutki europejskiej kolonizacji Afryki"), meta: t("Research paper on colonies in Africa in the 18th century","Исследовательская работа о колониях в Африке в XVIII веке","Praca badawcza o koloniach w Afryce w XVIII wieku"), detail: t("Quantum Computer Essays","Quantum Computer Essays","Quantum Computer Essays") },
+    ];
+    const courses = t(["English private lessons","Math private lessons"],["Частные уроки английского","Частные уроки математики"],["Prywatne lekcje angielskiego","Prywatne lekcje matematyki"]);
+
+    let lang = localStorage.getItem("mv-cv-lang") || "ru";
+    if (!["en","ru","pl"].includes(lang)) lang = "ru";
+
+    function render() {
+      document.documentElement.lang = lang;
+      document.getElementById("langs").innerHTML = ["en","ru","pl"].map((id) =>
+        `<button type="button" aria-pressed="${lang===id}" data-lang="${id}">${id.toUpperCase()}</button>`
+      ).join("");
+      document.getElementById("copyBtn").textContent = ui.copy[lang];
+      document.getElementById("aside").innerHTML = `
+        <div class="mono">MV</div>
+        <section>
+          <h2 class="side-title">${ui.contact[lang]}</h2>
+          <p style="margin:0 0 .75rem;font-size:.875rem;line-height:1.5">${location[lang]}</p>
+          <p style="margin:0 0 .75rem;font-size:.875rem"><a href="${LINKEDIN}">${ui.linkedin[lang]}</a></p>
+          <div class="share"><code>${PUBLIC_URL.replace("https://","")}</code></div>
+        </section>
+        <section>
+          <h2 class="side-title">${ui.languages[lang]}</h2>
+          ${languages.map((x) => `<div class="lang-row">${x[lang]}</div>`).join("")}
+        </section>
+        <section>
+          <h2 class="side-title">${ui.skills[lang]}</h2>
+          <div class="chips">${skills[lang].map((s) => `<span class="chip">${s}</span>`).join("")}</div>
+        </section>
+        <section>
+          <h2 class="side-title">${ui.certificates[lang]}</h2>
+          <p style="margin:0;font-size:.875rem;font-weight:500">${certificate.name[lang]}</p>
+          <p style="margin:.35rem 0 0;font-size:.75rem;color:var(--sidebar-muted)">${certificate.issued[lang]}</p>
+        </section>
+        <section>
+          <h2 class="side-title">${ui.courses[lang]}</h2>
+          ${courses[lang].map((c) => `<div class="lang-row">${c}</div>`).join("")}
+        </section>`;
+      document.getElementById("main").innerHTML = `
+        <header style="border-bottom:1px solid var(--hairline);padding-bottom:1.5rem">
+          <p class="kicker">Curriculum Vitae</p>
+          <h1 class="name">Marek Volkov</h1>
+          <p class="headline">${headline[lang]}</p>
+          <p class="loc">${location[lang]}</p>
+        </header>
+        <section class="block">
+          <h2 class="sec">${ui.profile[lang]}</h2>
+          <p style="margin:0;max-width:42rem;line-height:1.65">${summary[lang]}</p>
+        </section>
+        <section class="block">
+          <h2 class="sec">${ui.experience[lang]}</h2>
+          ${jobs.map((j) => `
+            <div class="job">
+              <div class="job-top"><h3>${j.role[lang]}</h3><p class="job-dates">${j.dates[lang]}</p></div>
+              <p class="job-co">${j.company[lang]}</p>
+              ${j.location[lang] !== "—" ? `<p class="job-loc">${j.location[lang]}</p>` : ""}
+              <ul>${j.bullets[lang].map((b) => `<li>${b}</li>`).join("")}</ul>
+            </div>`).join("")}
+        </section>
+        <section class="block">
+          <h2 class="sec">${ui.education[lang]}</h2>
+          <h3 style="margin:0;font-size:1.125rem">${education.degree[lang]}</h3>
+          <p class="job-co">${education.school[lang]}</p>
+          <p class="job-loc">${education.dates[lang]}</p>
+        </section>
+        <section class="block">
+          <h2 class="sec">${ui.publications[lang]}</h2>
+          ${publications.map((p) => `
+            <div class="job">
+              <h3>${p.title[lang]}</h3>
+              <p class="job-co">${p.meta[lang]}</p>
+              <p class="job-loc">${p.detail[lang]}</p>
+            </div>`).join("")}
+        </section>
+        <p class="source">${ui.source[lang]}</p>`;
+    }
+    document.getElementById("langs").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-lang]");
+      if (!btn) return;
+      lang = btn.dataset.lang;
+      localStorage.setItem("mv-cv-lang", lang);
+      render();
+    });
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(PUBLIC_URL);
+        document.getElementById("copyBtn").textContent = ui.copied[lang];
+        setTimeout(() => { document.getElementById("copyBtn").textContent = ui.copy[lang]; }, 1500);
+      } catch {
+        prompt("URL", PUBLIC_URL);
+      }
+    });
+    render();
+  </script>
+</body>
+</html>
