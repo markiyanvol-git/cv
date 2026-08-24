@@ -2,6 +2,7 @@ name: Deploy CV
 on:
   push:
     branches: ["main"]
+  workflow_dispatch:
 permissions:
   contents: read
   pages: write
@@ -18,8 +19,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - name: Prepare site
+        run: |
+          mkdir _site
+          cp index.html .nojekyll _site/
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
